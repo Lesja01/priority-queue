@@ -21,19 +21,22 @@ class Node {
 	}
 
 	remove() {		
-		if (this.parent==null){return};		
+		if (this.parent==null){return}
+		else{		
 		this.parent.removeChild(this);
+		}
 	}
 
 	swapWithParent() {
-		if (this.parent==null){return};
-		this.parent=this;
-		this.parent.parent=this;
-		this.left=this;
-		this.right=this;	
-		this.parent.left=this;
-		this.parent.right=this;
-
+		if (this.parent==null){return}else{		
+		this.parent.parent=this.parent;
+		this.parent.parent.parent=this.parent.parent;
+		this.parent.left=this.left;
+		this.parent.right=this.right;	
+		this.parent.parent.left=this.parent.left;
+		this.parent.parent.right=this.parent.right;	
+		}
+	
 	}
 }
 
