@@ -7,7 +7,7 @@ class PriorityQueue {
 	}
 
 	push(data, priority) {
-		if(this.heap.size()==this.maxSize){throw new Error ("You have reached max size")}
+		if(this.size()==this.maxSize){throw new Error ('You have reached max size')}
 		else{
 		this.heap.push(data, priority);
 		}
@@ -15,16 +15,15 @@ class PriorityQueue {
 
 	shift() {
 		if(this==null){throw new Error};
-		this.heap.pop();
-		console.log(this.heap);
-		Object.keys(this.heap.priority)(function (a, b) {
-			return (a.priority - b.priority)
-		  });
-		return this.heap.pop();
+		let pop=this.heap.pop();	
+		Object.entries(this.heap.priority).sort((a, b)=>
+			 (a.priority - b.priority)
+		  );
+		return pop;
 	}
 
 	size() {
-		this.heap.size();
+		return this.heap.length;
 	}
 
 	isEmpty() {
