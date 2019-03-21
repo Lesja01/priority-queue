@@ -9,15 +9,24 @@ class Node {
 
 	appendChild(node) {
 		if(this.right!==null&&this.left!==null){return}
-		else if(this.left!==null){this.right=node}else
-		{this.left=node};
+		else if(this.left!==null){
+		this.right=node;
+		this.right.parent=this;
+		}
+		else
+		{this.left=node;
+		this.left.parent=this;};
 	}
 
 	removeChild(node) {
-		if (this.left==node){this.left=null}
-		else if (this.right==node){this.right=null}
-		else if (this.left!==node&&this.right!==node){throw new Error};
-		this.parent=null;
+		if (this.left==node){
+			this.left=null;
+			node.parent=null;}
+		else if (this.right==node){
+			this.right=null;
+			node.parent=null;}
+		else if (this.left!==node&&this.right!==node){throw new Error('Node have not this child')}
+		
 	}
 
 	remove() {		
@@ -28,14 +37,27 @@ class Node {
 	}
 
 	swapWithParent() {
-		if (this.parent==null){return}else{		
-		this.parent.parent=this.parent;
-		this.parent.parent.parent=this.parent.parent;
-		this.parent.left=this.left;
-		this.parent.right=this.right;	
-		this.parent.parent.left=this.parent.left;
-		this.parent.parent.right=this.parent.right;	
+		if (this.parent==null){return}
+		else{	
+		let p=this.parent;		
+		let pp=this.parent.parent;		
+		let leftChild=this.left;
+		let rightChild=this.right;
+		let pLeftChild=this.parent.left;
+		let pRightChild=this.parent.right;
+
+		
+		if(this.parent.parent.left==this.parent){
+			this.parent=pp;
+			this.parent.parent=p;
+			this.parent.parent.left=pp;
+		}else if(this.parent.parent.right==this.parent){
+			this.parent=pp;
+			this.parent.parent=p;
+			this.parent.parent.right=pp;
 		}
+		
+	}
 	
 	}
 }

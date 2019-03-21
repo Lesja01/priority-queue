@@ -14,11 +14,11 @@ class MaxHeap {
 
 	pop() {
 		if(MaxHeap.length==0){return}else{
-			let data=this.data;
+		
 		this.detachRoot();
 		this.restoreRootFromInsertedNode(this);
 		this.shiftNodeDown(this.root);
-		return this.root.data;
+		return this.root;
 	}
 		
 	}
@@ -30,7 +30,8 @@ class MaxHeap {
 	}
 
 	restoreRootFromLastInsertedNode(detached) {
-		
+		let last=detached.pop;
+		this.root=last;
 	}
 
 	size() {

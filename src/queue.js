@@ -15,7 +15,9 @@ class PriorityQueue {
 
 	shift() {
 		if(this==null){throw new Error};
-		let pop=this.heap.pop();	
+		let pop=this.heap.pop();
+		this.heap.pop();
+			
 		Object.entries(this.heap.priority).sort((a, b)=>
 			 (a.priority - b.priority)
 		  );
